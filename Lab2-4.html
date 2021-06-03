@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Лапшин Д.</title>
+        <style>
+            .container {
+                margin-left: 30%;
+                margin-right: 30%;
+                margin-top: 2%;
+                border: 1px solid #b2dbc5;
+                background-color: #b2dbc5;
+                font-size: 30px;
+                padding: 5%;
+            }
+			#naz, button {
+				padding: 5px;
+				background-color: aliceblue;
+				text-decoration: none;
+			}
+
+        </style>
+	<script type="text/javascript" src="jquery.js"></script>		
+</head>
+<body>
+	<div class="container">
+	<a href="index.html" id="naz">Назад</a>
+		<h2>Задание 4.</h2>
+		<p>Координаты</p>
+		<div>
+			X: <span class="x"></span><br>
+			Y: <span class="y"></span>
+		</div>
+	</div>  
+		<script type="text/javascript">
+			$(document).mousemove(function(event){
+				event = event || window.event; 
+				console.log(event); 
+				document.querySelector('.x').innerHTML = event.offsetX;
+				document.querySelector('.y').innerHTML = event.offsetY;})</script>	
+</body>
+</html>

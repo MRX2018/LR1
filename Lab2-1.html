@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Лапшин Д.</title>
+        <style>
+            .container {
+                margin-left: 30%;
+                margin-right: 30%;
+                margin-top: 2%;
+                border: 1px solid #b2dbc5;
+                background-color: #b2dbc5;
+                font-size: 30px;
+                padding: 5%;
+            }
+			#naz {
+				padding: 5px;
+				background-color: aliceblue;
+				text-decoration: none;
+			}
+			.btn-slide {
+				padding: 5px;
+				background-color: aliceblue;
+			}
+        </style>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".btn-slide").click(function(){
+				document.body.style.backgroundColor = "#fcb045";
+			})
+		})
+	</script>	
+</head>
+<body>
+	<div class="container">
+	<a href="index.html" id="naz">Назад</a>
+		<h2>Задание 1.</h2>
+		<button class="btn-slide">Изменить цвет</button><br>
+		</div>	
+</body>
+</html>

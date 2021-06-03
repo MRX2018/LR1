@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Лапшин Д.</title>
+        <style>
+            .container {
+                margin-left: 30%;
+                margin-right: 30%;
+                margin-top: 2%;
+                border: 1px solid #b2dbc5;
+                background-color: #b2dbc5;
+                font-size: 30px;
+                padding: 5%;
+            }
+			#naz, button {
+				padding: 5px;
+				background-color: aliceblue;
+				text-decoration: none;
+			}
+			input {
+				border-radius: 5px;
+				padding: 5px;
+				font-size: 20px;
+				width: 100%;
+			}
+        </style>
+	<script type="text/javascript" src="jquery.js"></script>		
+</head>
+<body>
+	<div class="container">
+	<a href="index.html" id="naz">Назад</a>
+		<h2>Задание 3.</h2>
+		<button id="right">Вправо</button>
+		<button  id="left">Влево</button>
+		<button  id="down">Вниз</button>
+		<button id="up">Вверх</button><br><br>
+		 <span id="img" style="position: absolute;"> <img src="https://media.giphy.com/media/LLwi57DUyqeTynrCl5/giphy.gif" alt="картинка" style="width: 200px; "></span><br>
+	<br><br><br><br><br><br>
+	</div>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#right").click(function() {
+					$("#img").animate({left:"+=100"})})
+				$("#left").click(function() {
+					$("#img").animate({left:"-=100"})})
+				$("#down").click(function() {
+					$("#img").animate({top: "+=100"})})
+				$("#up").click(function() {
+					$("#img").animate({top: "-=100"})})})
+	</script>	
+</body>
+</html>

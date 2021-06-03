@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+	<title>Лапшин Д.</title>
+	<style>
+		.container {
+			margin-left: 30%;
+			margin-right: 30%;
+			margin-top: 2%;
+			border: 1px solid #b2dbc5;
+			background-color: #b2dbc5;
+			font-size: 30px;
+			padding: 5%;
+		}
+		#naz, button, input {
+			padding: 5px;
+			background-color: aliceblue;
+			text-decoration: none;
+		}
+
+</style>
+    <script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var s;
+			var k1,k2,k3,k4;
+			s=0;
+			k1=0;
+				k2=0;
+				k3=0;
+				k4=0;
+			$("#b").click(function(){
+				s+=1;
+				var que = document.getElementsByName('q');
+				for (var i = 0; i < que.length; i++) {
+        			if (que[i].checked) {
+            			if (i==0){
+							k1+=1
+							res1=k1*100/s;
+							alert(res1+"% людей удивили бы Маяковского...")
+							break
+						}
+						if (i==1){
+							k2+=1
+							res2=k2*100/s;
+							alert(res2+"% смогли бы процитировать это стихотворение без ошибки! Браво!")
+							break
+						}
+						if (i==2){
+							k3+=1
+							res3=k3*100/s;
+							alert(res3+"% ответивших умеют играть на инструментах вечных дум")
+							break
+						}
+						
+        		} 
+		}})})
+	</script>
+</head>
+<body>
+	<div class="container">
+	<a href="index.html" id="naz">Назад</a>
+		<h2>Задание 6.</h2>
+        <form name="quiz" action="javascript:check();" class="quizform">
+            <div class="quizsection">
+                <h2>Продолжите стихотворение В. Маяковского</h2>
+				<p>Я сразу смазал карту будня, <br>
+					плеснувши краску из стакана; <br>
+					я показал на блюде студня <br>
+					косые скулы океана. <br>
+					На чешуе жестяной рыбы <br>
+					прочел я зовы новых губ. <br>
+					А вы <br>
+					ноктюрн сыграть <br>
+					могли бы <br>
+					на...</p>
+                <div class="answer">
+                    <input name="q" value="value1" id="value1" type="radio"/>струнах длинных рук?
+                </div>
+                <div class="answer">
+                    <input name="q" value="value1" id="value2" type="radio" />флейте водосточных труб?
+                </div>
+                <div class="answer">
+                    <input name="q" value="value2" id="value3" type="radio" />инструментах вечных дум?
+                </div> 
+            </div> 
+            <br>
+		    <input type="button" value="Ответить" id="b">
+            </form>
+	</div>
+</body>
+</html>

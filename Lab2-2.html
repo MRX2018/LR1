@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Лапшин Д.</title>
+        <style>
+            .container {
+                margin-left: 30%;
+                margin-right: 30%;
+                margin-top: 2%;
+                border: 1px solid #b2dbc5;
+                background-color: #b2dbc5;
+                font-size: 30px;
+                padding: 5%;
+            }
+			#naz {
+				padding: 5px;
+				background-color: aliceblue;
+				text-decoration: none;
+			}
+			#otpr {
+				padding: 5px;
+				background-color: aliceblue;
+			}
+			input {
+				border-radius: 5px;
+				padding: 5px;
+				font-size: 20px;
+				width: 100%;
+			}
+			.zv {
+				color: red;
+			}
+        </style>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#otpr").click(function(){
+				var name = document.getElementById("name"), inp1 = document.getElementById("pas1"), inp2=document.getElementById("pas2"), email = document.getElementById("email"), mess=document.getElementById("mess")
+				if (name.value ==""){
+					alert("Вы не заполнили поле имени!")
+					document.getElementById('name').style.borderColor="red"}
+				else {
+					document.getElementById('name').style.borderColor="black";
+				}
+				if (inp1.value.length<4){
+					alert("Пароль должен содержать в себе больше 4 символов!")
+					document.getElementById('pas1').style.borderColor="red"}
+				else {
+					document.getElementById('pas1').style.borderColor="black";
+				}
+				if (inp1.value!=inp2.value){
+				alert("Не совапдают пароль и его подтверждение!");
+				inp1.value = "";
+				inp2.value = "";
+				document.getElementById('pas1').style.borderColor="red"
+				document.getElementById('pas2').style.borderColor="red"}
+				else {
+					document.getElementById('pas1').style.borderColor="black";
+					document.getElementById('pas2').style.borderColor="black";
+				}
+			if (email.value==""){
+				alert("Email не введен!")
+				document.getElementById('email').style.borderColor="red"}
+				else {
+					document.getElementById('email').style.borderColor="black";
+				}
+			if (email.value.indexOf("@")==-1) {
+				alert("Email не содержит символ \"@\".");
+				document.getElementById('email').style.borderColor="red"}
+				else {
+					document.getElementById('email').style.borderColor="black";
+				}
+			if (mess.value.length<11){
+				alert("Текст сообщения либо содержит меньше 10 символов, либо пуст!")
+				document.getElementById('mess').style.borderColor="red"}
+				else {
+					document.getElementById('mess').style.borderColor="black";
+				}
+			})
+		})
+	</script>	
+</head>
+<body>
+	<div class="container">
+	<a href="index.html" id="naz">Назад</a>
+		<h2>Задание 2.</h2>
+		<form name="forme" onsubmit="return validate()">
+			<p>Имя<span class="zv">*</span> <input type="name" id="name" size=20 required></p>			
+			<p>Пароль<span class="zv">*</span> <input type="password" id="pas1" size=20 required></p>			
+			<p>Потверждение пароля<span class="zv">*</span> <input type="password" id="pas2" size=20 required></p>		
+			<p>EMAIL<span class="zv">*</span> <input type="email" id="email" size=20 required></p>	
+			<p>Тема сообщения: <input type="text" size=20 required></p>		
+			<p>Сообщение: <input type="text" id="mess" size=30 required></p><br>		
+			<input type="button" value="Отправить" id="otpr">			
+			<p><span class="zv">*</span> - обязательные для заполнения поля</p>
+			</form>
+			</div>
+</body>
+</html>

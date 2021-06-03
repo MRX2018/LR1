@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+	<title>Лапшин Д.</title>
+	<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  }
+ 
+  .container {
+			margin-left: 30%;
+			margin-right: 30%;
+			margin-top: 2%;
+			border: 1px solid #b2dbc5;
+			background-color: #b2dbc5;
+			font-size: 30px;
+			padding: 5%;
+		}
+  .calculator {
+	width: 420px;
+	height: 480px;
+	background: #eee;
+	border-radius: 5px;
+	box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2), -2px -2px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  output {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 400px;
+	height: 40px;
+	background: #fff;
+	margin: 10px auto;
+	border-radius: 5px;
+	font-size: 1.4em;
+	font-weight: bold;
+	box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.3),
+	  inset -1px -1px 1px rgba(0, 0, 0, 0.3);
+  }
+  
+  .keyboard {
+	height: 440px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: flex-start;
+  }
+  
+  button {
+	margin: 0.5em 1em;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 1em;
+	font-weight: bold;
+  }
+	  </style>
+    <script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+	<div class="container">
+		<a href="index.html" id="naz">Назад</a>
+		<h2>Задание 7.</h2>
+		
+		<div class="calculator">
+			<output></output>
+		  </div>
+		  <script>
+		  const output = document.querySelector('output')
+		  
+		  const div = document.createElement('div')
+		  div.classList.add('keyboard')
+		  document.querySelector('.calculator').appendChild(div)
+		  
+		  'C CE . / 7 8 9 * 4 5 6 - 1 2 3 + 0 ( ) ='.split(' ')
+			  .map(symbol => {
+				  div.insertAdjacentHTML('beforeend', `<button value="${symbol}">${symbol}</button>`)
+			  })
+		  
+		  div.addEventListener('click', e => {
+			  if(e.target.tagName === 'BUTTON') {
+				  calc(e.target.value)
+			  }
+		  })
+		  function calc(value) {
+			  if (value.match(/=/)) {
+				  try {
+					  if (output.textContent !== '') {
+						  output.textContent = eval(output.textContent);
+					  }
+				  } catch {
+					  let oldValue = output.textContent
+					  let newValue = 'недопустимое выражение'
+		  
+					  output.textContent = newValue
+					  const timer = setTimeout(() => {
+						  output.textContent = oldValue
+						  clearTimeout(timer)
+					  }, 1500)
+				  }
+			  } else if (value === 'C') {
+				  output.textContent = ''
+			  } else if (value.match(/CE/)) {
+				  output.textContent = output.textContent.substring(0, output.textContent.length - 1)
+			  } else {
+				  output.textContent += value
+			  }
+		  }
+		  </script>
+</body>
+</html>
