@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+	<script src="jquery-ui.js"></script> 
+	
+	<title>Лапшин Д.</title>
+	<style>
+		.container {
+			margin-left: 30%;
+			margin-right: 30%;
+			margin-top: 2%;
+			border: 1px solid #b2dbc5;
+			background-color: #b2dbc5;
+			font-size: 30px;
+			padding: 5%;
+		}
+		#naz, button, input {
+			padding: 5px;
+			background-color: aliceblue;
+			text-decoration: none;
+		}
+		.news {
+padding: 2%;
+			margin-top: 2%;
+			background-color: #ffc471;
+			color: #7d1dbd;
+			font-size: 26px;
+		}
+		img {
+			width: 90%;
+			margin-left: 5%;
+			margin-right: 5%;
+		}
+		#accordion{
+			font-size: 24px;
+		}
+		input {
+				border-radius: 5px;
+				padding: 5px;
+				font-size: 20px;
+				width: 100%;
+			}
+			.time{
+				text-align: center;
+				font-size: medium;
+				font-weight: 700;
+				color: #ffc471;
+				margin-left: 45%;
+			}
+</style>
+</head>
+<body>
+	<div class="container">
+	<a href="index.html" id="naz">Назад</a>
+		<h2>Расписание электричек из г. Уфа </h2>
+		<p>Возможные направления: </p>
+			<span id="accordion">
+			<h3>Инзер</h3> <div>
+			<p>	
+				Остановки: кроме Левая Белая</p>
+			</div> 
+			<h3>Абдуллино</h3> <div>
+			<p>	
+				Остановки: кроме Левая Белая, Чишмы-восточные, 1413 км</p>
+			</div> 
+			<h3>Урман</h3> <div>
+			<p>Со всеми остановками</p></div> 
+			<h3>Кандры</h3> <div>
+			<p>	
+				Остановки: кроме Чишмы-восточные</p>
+			</div> 
+		</span>
+			<br>
+			<p>Для оформления билета на электричку, пожалуйста, укажите пункт назначения: <a href="#" title="Пунктами назначений могут быть только те пункты, которые указаны выше.">&#63;</a></p>
+		<form>
+				<div class="form-group">
+				<input type="text"  id="search" placeholder="Пункт назначения"> <br>
+				<p>И день:</p>
+				<label for="date"></label> <input type="text"  id="date" class="input-date" placeholder="День">
+				</div>
+		</form>
+		<br><br>
+		<p style="display: inline;">Количество пассажиров: </p><p style="display: inline;" id="sliderValue" ></p>
+		<br><br>
+		<div id="slider" style="width: 100%;"></div> <br /><br>
+		<input type="button" value="Найти билет!"  id="open" class="back">
+		<div id="dialog" title="Выбор рейса">
+			<p class="dialog-text">Список рейсов из г. Уфа<span id = variable></span> в <span id = variable2></span></p>
+			<p class="dialog-text-date">Дата: <span id = variable3></span></p>
+			<p class="dialog-text-date">Количество пассажиров: <span id="variable4"></span></p>
+			<hr>
+			<div class="flight"><label class="dialog-text-flight" > <span class="time">10:00</span></label ><br><br><input type="button" value="Купить" class="reservation"   ><br></div>
+			<br><hr><div class="flight"><label  class="dialog-text-flight"> <span class="time">17:00</span></label ><br><br><input type="button" value="Купить" class="reservation" ><br></div>
+		 <hr>
+			</div>
+		  <div id="ticket" title="Бронь билета">
+		  </div>
+		  <div id="rst" title="Стоимость">
+			<p class="dialog-text">Стоимость билетов = <span id = summa></span> руб.</p>
+			<p class="dialog-text">Завершить покупку?</p>
+			
+		  </div>
+<script type="text/javascript">
+$(function(){
+	$( function() {
+    $( document ).tooltip();
+  } );
+	var gor = ["Инзер", "Абдуллино", "Урман", "Кандры"]; 
+	$("#search" ).click(function(){
+		$("#search").autocomplete({ source: gor });
+	});
+	
+	$.datepicker.regional['ru'] = {
+	closeText: 'Закрыть',
+	prevText: 'Предыдущий',
+	nextText: 'Следующий',
+	currentText: 'Сегодня',
+	monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+	monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
+	dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+	dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
+	dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+	weekHeader: 'Не',
+	dateFormat: 'dd.mm.yy',
+	firstDay: 1,
+	isRTL: false,
+	showMonthAfterYear: false,
+	yearSuffix: ''
+};
+	$.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
+	$("#date").datepicker();
+	$("#accordion" ).accordion({  collapsible: true });   
+    $('#slider').slider({
+		min: 1,
+		max: 10,
+        change: function (event, ui){
+            var val = $('#slider').slider('value');
+            $('#sliderValue').html(val);
+        },
+        start: function(event, ui){
+            console.log('Начало движения слайдера');
+        },
+        slide: function(event, ui){
+            console.log('Перемещение слайдера');
+        },
+        stop: function(event, ui){
+            console.log('Завершение движения слайдера');
+        }
+    });
+	$('#dialog').dialog({ autoOpen: false, width: 400 });
+	$("#open").click(function(){ 
+		var e2 = document.getElementById("search");
+		var strUser2 = e2.value;
+		document.getElementById('variable2').innerHTML = strUser2;
+		var e3 = document.getElementById("date");
+		var strUser3 = e3.value;
+		document.getElementById('variable3').innerHTML = strUser3;
+		document.getElementById('variable4').innerHTML = $('#slider').slider('value');
+		$( "#dialog" ).dialog('open'); }); 
+	$('#ticket').dialog({ autoOpen: false, width: 400 });
+	$('#rst').dialog({ autoOpen: false, width: 400, buttons:{
+        "Да": function(){ alert("Спасибо за бронь!"); $( "#rst" ).dialog('close'); },
+        "Нет": function(){alert("Жаль!"); $( "#rst" ).dialog('close');}
+    }
+   });
+	$(".reservation").click(function(){
+		$( "#dialog" ).dialog('close');
+		var summa;
+		summa = 0;
+		for (let i = 1; i <= $('#slider').slider('value'); i++){
+			var div = document.createElement("div");
+			div.className = "ticket-div";
+			var pass = document.createElement("h4");
+			pass.innerHTML = 'Билет ' + i+': ';
+			ticket.appendChild(pass);
+			var divi = document.createElement("div");
+			divi.innerHTML = 'Ваше ФИО: <input type=text>';
+			ticket.appendChild(divi);
+			var p = document.createElement("p");
+			ticket.appendChild(p);
+			var divk = document.createElement("div");
+			ticket.appendChild(divk);
+			var p1 = document.createElement("p");
+			ticket.appendChild(p1);
+			var divp = document.createElement("div");
+			divp.innerHTML = 'Серия паспорта: <input type=text>';
+			ticket.appendChild(divp);
+			var p2 = document.createElement("p");
+			ticket.appendChild(p2);
+			var divn = document.createElement("div");
+			divn.innerHTML = 'Номер паспорта: <input type=text>';
+			ticket.appendChild(divn);
+			var p3 = document.createElement("p");
+			ticket.appendChild(p3);
+		}
+		var rasc = document.createElement("div");
+			rasc.innerHTML = '<input type="button" value="Рассчитать стоимость" class="flight-btn rasct">';
+			ticket.appendChild(rasc);
+		$( "#ticket" ).dialog('open');
+		$('#rst').dialog({ autoOpen: false, width: 400 });
+	 $(".rasct").click(function(){
+		$( "#ticket" ).dialog('close');
+		var ticket = document.getElementById("ticket");
+		ticket.innerHTML = '';
+		var rand = Math.floor(Math.random() * 1000);
+		summa = ($('#slider').slider('value'))*600+rand;
+		document.getElementById('summa').innerHTML = summa;
+		$( "#rst" ).dialog('open'); 
+	 });
+	 });
+	 
+});
+</script>
+	</div>	
+</body>
+</html>
