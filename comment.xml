@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spisok>
+   <comments>
+      <name>
+         Дмитрий
+      </name>
+      <email>
+         dimalapshin2016@mail.ru
+      </email>
+      <comment>
+         Не особо зрелищный матч, но Челси играл собранно, поэтому победил
+      </comment>
+   </comments>
+   <comments>
+      <name>
+         Давид
+      </name>
+      <email>
+        davidd@gmail.com
+      </email>
+      <comment>
+        Тренер Манчестер Сити переиграл сам себя,  за что и поплатился
+      </comment>
+   </comments>
+   <comments>
+      <name>
+         Эльдар
+      </name>
+      <email>
+         eldar@mail.ru
+      </email>
+      <comment>
+         Как говорится, атака выигрывает матчи, а защита - титулы))
+      </comment>
+   </comments>
+   </spisok>

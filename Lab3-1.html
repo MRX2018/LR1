@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+	<title>Лапшин Д.</title>
+	<style>
+		.container {
+			margin-left: 30%;
+			margin-right: 30%;
+			margin-top: 2%;
+			border: 1px solid #b2dbc5;
+			background-color: #b2dbc5;
+			font-size: 30px;
+			padding: 5%;
+		}
+		#naz, button, input {
+			padding: 5px;
+			background-color: aliceblue;
+			text-decoration: none;
+		}
+		.news {
+padding: 2%;
+			margin-top: 2%;
+			background-color: #ffc471;
+			color: #7d1dbd;
+			font-size: 26px;
+		}
+		img {
+			width: 90%;
+			margin-left: 5%;
+			margin-right: 5%;
+		}
+
+</style>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script>
+		let tek = 5;
+		function morenews(str) {
+			if (str.length==0) {
+			document.getElementById("newsn").innerHTML="";
+			return;
+			}
+			if (window.XMLHttpRequest) {
+				xmlhttp=new XMLHttpRequest();
+			} else {  
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange=function() {
+				if (this.readyState==4 && this.status==200) {
+  					document.getElementById("newsn").innerHTML=this.responseText;
+				}}
+		   	xmlhttp.open("GET","rss.php?tek="+tek,true);
+		  	 xmlhttp.send();
+		   	tek+=5;}
+	 </script>
+</head>
+<body>
+	<div class="container">
+	<a href="index.html" id="naz">Назад</a>
+		<h2>Задание 1.</h2>
+		<div class="news">
+			<h3 >
+				"Скутергеддон" в России. Как избежать аварий с электросамокатами
+			</h3>
+			<p>
+				В России набирает популярность прокат электросамокатов, но передвижение на них до сих пор вне правового поля. Вместе с тем в травмпункты все чаще попадают и ездоки, и прохожие. Есть даже летальные случаи. Чиновники предлагают снижать допустимую скорость в пешеходных зонах и другие изменения в ПДД. РИА Новости разбиралось, поможет ли это.
+			</p>
+			<img src="https://cdn25.img.ria.ru/images/07e4/09/02/1576647991_0:356:3006:2047_640x0_80_0_0_d9491b3b602ce2f667c5c26f81c50f0e.jpg.webp" alt="">
+		</div>
+		<br>
+		<div class="news">
+			<h3 style="font-weight: bold">
+				В Тихом океане произошло землетрясение магнитудой 4,7
+			</h3>
+			<p>
+				Землетрясение магнитудой 4,7 произошло у побережья Камчатки, сообщил региональный филиал Единой геофизической службы РАН. <br>
+Толчок произошел в 16:30 местного времени (07:30 по московскому). 
+			</p>
+			<img src="https://cdn25.img.ria.ru/images/07e4/0a/05/1578206362_0:0:3220:1811_640x0_80_0_0_ab7f74f78ea575d300f17f3c31f29c0f.jpg.webp" alt="" >
+		</div>
+		<br>
+		<div class="news">
+			<h3 style="font-weight: bold">
+				Назван самый мощный смартфон в мире
+			</h3>
+			<p>
+				Десятку самых производительных Android-смартфонов составили исключительно модели с процессором Snapdragon 888. Итоги мая подвел популярный бенчмарк AnTuTu.
+			</p>
+			<img src="https://cdn25.img.ria.ru/images/07e5/04/03/1604077521_0:321:3071:2048_640x0_80_0_0_74809ae3ec7bb0abac772f072a2b2d2e.jpg.webp" alt="">
+		</div>
+		<br>
+		<div class="news">
+			<h3 style="font-weight: bold">
+				Токио заявил России протест из-за задержания японского судна
+			</h3>
+			<p>
+				Правительство Японии заявило России протест из-за задержания рыболовецкой шхуны "№ 172 Эйхо-мару" в Охотском море.
+			</p>
+			<img src="https://cdn25.img.ria.ru/images/07e5/03/14/1602114014_0:161:3071:1888_640x0_80_0_0_1ce71f6f00ed0175b02ce930aad9c753.jpg.webp" alt="" >
+		</div>
+		<br>
+		<div class="news">
+			<h3 style="font-weight: bold">
+				Суд рассмотрит дело жителя Тулы, ставшего миллионером по ошибке
+			</h3>
+			<p>
+				Советский районный суд Тулы рассмотрит дело местного жителя, который украл у банка 95 миллионов рублей, сообщает областной судебный департамент. <br>
+Мужчину обвиняют в краже в особо крупном размере и в отмывании денег. Заседание назначили на 3 июля.
+			</p>
+			<img src="https://cdn25.img.ria.ru/images/93004/70/930047028_0:199:3820:2348_640x0_80_0_0_63157afa24b03cf5a0c752d7f8a04e8f.jpg.webp" alt="">
+		</div>
+		<br>
+		<span id = "newsn"></span>
+		<form>
+			<input onclick = "morenews(this.value)" type="button" value="загрузить" style="background-color: white; border-color: white;">
+		</form>
+
+
+</body>
+</html>

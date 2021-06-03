@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+	<title>Лапшин Д.</title>
+	<style>
+		.container {
+			margin-left: 30%;
+			margin-right: 30%;
+			margin-top: 2%;
+			border: 1px solid #b2dbc5;
+			background-color: #b2dbc5;
+			font-size: 30px;
+			padding: 5%;
+		}
+		#naz, button, input {
+			padding: 5px;
+			background-color: aliceblue;
+			text-decoration: none;
+		}
+		.news {
+padding: 2%;
+			margin-top: 2%;
+			background-color: #ffc471;
+			color: #7d1dbd;
+			font-size: 26px;
+		}
+		input {
+				border-radius: 5px;
+				padding: 5px;
+				font-size: 20px;
+				width: 100%;
+			}
+      img {
+			width: 90%;
+			margin-left: 5%;
+			margin-right: 5%;
+		}
+    .news {
+padding: 2%;
+			margin-top: 2%;
+			background-color: #ffc471;
+			color: #7d1dbd;
+			font-size: 26px;
+		}
+
+</style>
+	<script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+	<div class="container">
+	<a href="index.html" id="naz">Назад</a>
+	<script>
+		let tek = 3;
+	window.addEventListener("load",function() {
+  var request = new XMLHttpRequest();
+  request.open('GET','get3.php',true);
+  request.addEventListener('readystatechange', function() {
+    if ((request.readyState==4) && (request.status==200)) {
+      var welcome = document.getElementById('Output');
+      welcome.innerHTML = request.responseText;
+    }
+  });
+request.send();
+});
+    function showRSS(str) {
+      alert("Отзыв отправлен!");
+		if (str.length==0) {
+    document.getElementById("Output").innerHTML="";
+    return;
+  }
+  if (window.XMLHttpRequest) {
+    xmlhttp=new XMLHttpRequest();
+  } else {  
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("Output").innerHTML=this.responseText;
+    }
+
+  }
+  tek+=1;
+  var nam = document.getElementById("name").value, email = document.getElementById("email").value, comment=document.getElementById("comment").value;
+var variables = "tek="+tek+"&name="+nam+"&email="+email+"&comment="+comment;
+			   xmlhttp.open("GET","3.php?"+variables,true);
+			   xmlhttp.send();
+}
+</script>
+
+		
+		<h2>Задание 2.</h2>
+		<h3>Отзывы на финал Лиги Чемпионов - Челси / Манчестер Сити</h3>
+		<img src="https://editorial.uefa.com/resources/0269-12447bba19ed-8be3a77dda41-1000/por1.jpg" alt="">
+		<h3>Оставьте свой отзыв</h3>
+		<form method="get">
+			<p>Имя <input type="text" name="name" id="name"/></p>
+			<p>EMAIL <input type="text" name="email" id="email"/></p>
+			<p>Отзыв <input type="text" name="comment" id="comment"/></p>
+			<input onclick = "showRSS(this.value)" type="button" value="Отправить">
+		</form>
+		<span id = "Output"></span>
+
+	
+</body>
+</html>
